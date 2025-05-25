@@ -1,0 +1,23 @@
+{
+	"home": "/home/matous/Downloads/Conky",
+	"shapes": "Shapes",
+	"templates": "Code_templates",
+	"clock_rectangles": {
+		"filled": "filled_rectangle.png",
+		"outlined": "outline_rectangle.png"
+	},
+	"conky_files": ["main", "clock", "calendar"],
+	"python_files": ["clock", "calendar"],
+	"bash_files": [],
+	"valid_orientations": ["horizontal", "vertical"],
+	"calendar_settings": {
+		"day_orientation": "horizontal"
+	},
+	"schemes": {
+		"blue": {
+			"color": "2D8BBF",
+			"background_image_name": "Blue_scheme.png"
+		}
+	},
+	"scheme": "blue"
+}

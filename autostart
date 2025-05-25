@@ -1,0 +1,6 @@
+#!/bin/bash
+python3 /home/matous/Downloads/Conky/clock.py &
+python3 /home/matous/Downloads/Conky/calendar.py &
+conky -c /home/matous/Downloads/Conky/main &
+conky -c /home/matous/Downloads/Conky/clock &
+conky -c /home/matous/Downloads/Conky/calendar 

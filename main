@@ -1,0 +1,107 @@
+background no
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+minimum_size 550 550
+maximum_width 650
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 0
+
+border_inner_margin 0
+border_outer_margin 0
+
+# — SIZE — #
+minimum_size 250 70
+maximum_width 500
+
+# — ALIGNMENT — #
+alignment top_left
+gap_x 90
+gap_y 50
+
+# — GRAPHIC — #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+# — TEXT — #
+use_xft yes
+xftfont Laconic:size=12
+xftalpha 0.8
+uppercase no
+override_utf8_locale yes
+default_color FFF
+
+# — LUA — #
+#lua_load 
+#lua_draw_hook_pre 
+
+# — Colors — #
+color1 2D8BBF
+
+# — Disks — #
+rt /dev/disk/by-label/SYSTEM
+wd1t /dev/disk/by-label/WD\x201T
+
+own_window_argb_visual yes
+own_window_colour 000000
+own_window_argb_value 0
+TEXT
+# Processes
+${font Orore:size=20}U${voffset -15}${goto 40}${font}${font Laconic:size=11:condensed:bold}Processes${color}${goto 180}CPU${goto 250}RAM
+${font Sportrop:size=9:condensed:bold}${color1}${goto 40}${running_processes}/${processes}${goto 180}${cpu}%${goto 250}${memperc}%
+${color}${voffset 10}${goto 40}${font}${voffset -10}${top name 1}${goto 170}${top cpu 1}${goto 240}${top mem 1}
+${goto 40}${top name 2}${goto 170}${top cpu 2}${goto 240}${top mem 2}
+${goto 40}${top name 3}${goto 170}${top cpu 3}${goto 240}${top mem 3}
+${goto 40}${top name 4}${goto 170}${top cpu 4}${goto 240}${top mem 4}
+${goto 40}${top name 5}${goto 170}${top cpu 5}${goto 240}${top mem 5}
+
+# CPU
+${voffset 0}${font Orore:size=20}L${voffset -15}${goto 40}${font Sportrop:size=16}${font Laconic:size=11:condensed:bold}CPU${font}${color1}${goto 120}${freq_g cpu} GHz
+${goto 40}${voffset -5}${font Sportrop:size=9:condensed:bold}$color1${cpu cpu0}%${font}${color}${goto 120}${cpubar 4,90}
+${voffset 4}${goto 40}Core1${goto 85}${cpu cpu1}%${goto 120}${cpubar cpu1 7,90}
+${voffset 4}${goto 40}Core2${goto 85}${cpu cpu2}%${goto 120}${cpubar cpu2 7,90}
+${voffset 4}${goto 40}Core3${goto 85}${cpu cpu3}%${goto 120}${cpubar cpu3 7,90}
+${voffset 4}${goto 40}Core4${goto 85}${cpu cpu4}%${goto 120}${cpubar cpu4 7,90}
+${voffset 4}${goto 40}Core5${goto 85}${cpu cpu5}%${goto 120}${cpubar cpu5 7,90}
+${voffset 4}${goto 40}Core6${goto 85}${cpu cpu6}%${goto 120}${cpubar cpu6 7,90}
+${voffset 4}${goto 40}Core7${goto 85}${cpu cpu7}%${goto 120}${cpubar cpu7 7,90}
+${voffset 4}${goto 40}Core8${goto 85}${cpu cpu8}%${goto 120}${cpubar cpu8 7,90}
+
+# Network
+${font Orore:size=20}I${font}${voffset -15}${voffset -15}${goto 40}${font Sportrop:size=16}${font Laconic:size=11:condensed:bold}Network${font}
+${voffset 15}${goto 40}wlp4s0${color1}${goto 100}${downspeed wlp4s0}${goto 160}${upspeed wlp4s0}${color}${font}
+${goto 40}${upspeedgraph wlp4s0 30,150}
+# Power
+${font Orore:size=20}B${font}${voffset -10}${voffset -15}${goto 40}${font Sportrop:size=16}${font Laconic:size=11:condensed:bold}Power${font}${color1}${goto 120}${exec acpi -b | awk '{print $3}' | sed 's/,//'} (${battery_percent}%)${color}
+
+${voffset -12}${goto 40}${battery_bar 5,200}
+$color1${goto 40}${exec acpi -b | awk '{print $5}'}
+${voffset 10}${goto 40}Uptime: ${uptime}$color
+
+# Root, icon, name, used space
+${voffset -3}${font Orore:size=20}Q${voffset -10}${goto 40}${font}${font Laconic:size=11:condensed:bold}Root${font}${goto 160}${color1}${fs_used}${color}
+# Bar, % used, total space
+${offset 2}${voffset 2}${fs_bar 3,23 /}${goto 30}${voffset -5}${font Sportrop:size=9:condensed:bold}$color1 ${fs_used_perc /}%${font}${color}${font}${goto 160}${color1}${fs_size}${color}
+# I/O
+${voffset 10}${goto 40}${color1}${diskio_write}${color}${goto 160}${font}${color1}${diskio_read}${color}${alignr 5}
+
+# WD 1T, icon, name, used space
+${voffset -3}${font Orore:size=20}Q${voffset -10}${goto 40}${font}${font Laconic:size=11:condensed:bold}WD 1T${font}${goto 160}${color1}${fs_used /media/matous/WD 1T/}${color}
+# Bar, % used, total space
+${offset 2}${voffset 2}${fs_bar 3,23 /media/matous/WD 1T/}${goto 30}${voffset -5}${font Sportrop:size=9:condensed:bold}$color1 ${fs_used_perc /media/matous/WD 1T/}%${font}${color}${font}${goto 160}${color1}${fs_size /media/matous/WD 1T/}${color}
+
+# RAM
+${voffset -3}${font Orore:size=20}M${voffset -10}${goto 40}${font Laconic:size=11:condensed:bold}RAM${goto 160}${font}$color1${mem}$color
+${offset 2}${voffset 3}${membar 3,23}${goto 40}${voffset -8}${font Sportrop:size=10:condensed:bold}$color1${memperc}%${font}${goto 160}$color1${memmax}${color}
